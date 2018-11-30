@@ -1,0 +1,27 @@
+{
+  "name": "awesome-package",
+  "scripts": {
+    "test": " npm run eslint && ava",
+    "eslint": "eslint ./ *.js  --ext .js"
+  },
+  "devDependencies": {
+    "@coorpacademy/eslint-plugin-coorpacademy": "^8.1.1",
+    "ava": "1.0.0-rc.2",
+    "eslint": "^5.9.0",
+    "eslint-config-coorpacademy": "^2.0.2",
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-istanbul": "^4.1.4",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-export-extensions": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.5",
+    "babel-preset-env": "^1.5.2"
+  },
+  "ava": {
+    "files": [
+      "tests/**/*.js"
+    ]
+  }
+}

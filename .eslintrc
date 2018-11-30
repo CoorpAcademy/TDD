@@ -1,0 +1,4 @@
+{
+  "plugins": ["@coorpacademy/coorpacademy"],
+  "extends": ["coorpacademy/core", "coorpacademy/ava"]
+}
