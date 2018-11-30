@@ -1,4 +1,14 @@
 {
-  "plugins": ["@coorpacademy/coorpacademy"],
+  "env": {
+    "es6": true
+  },
+
+  "parserOptions": {
+    "parser": "babel-eslint"
+  },
+
+  "plugins": [
+    "@coorpacademy/coorpacademy"
+  ],
   "extends": ["coorpacademy/core", "coorpacademy/ava"]
 }

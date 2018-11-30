@@ -5,23 +5,30 @@
     "eslint": "eslint ./ *.js  --ext .js"
   },
   "devDependencies": {
+    "@ava/babel-preset-stage-4": "^2.0.0",
+    "@babel/plugin-proposal-pipeline-operator": "^7.0.0",
+    "@babel/register": "^7.0.0",
     "@coorpacademy/eslint-plugin-coorpacademy": "^8.1.1",
     "ava": "1.0.0-rc.2",
-    "eslint": "^5.9.0",
-    "eslint-config-coorpacademy": "^2.0.2",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
+    "babel-eslint": "^10.0.1",
     "babel-loader": "^7.0.0",
     "babel-plugin-istanbul": "^4.1.4",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-export-extensions": "^6.22.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.5",
-    "babel-preset-env": "^1.5.2"
+    "babel-preset-env": "^1.5.2",
+    "eslint": "^5.9.0",
+    "eslint-config-coorpacademy": "^2.0.2"
   },
   "ava": {
     "files": [
       "tests/**/*.js"
+    ],
+    "require": [
+      "@babel/register"
     ]
   }
 }
