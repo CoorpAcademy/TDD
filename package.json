@@ -21,14 +21,22 @@
     "babel-plugin-transform-react-remove-prop-types": "^0.4.5",
     "babel-preset-env": "^1.5.2",
     "eslint": "^5.9.0",
-    "eslint-config-coorpacademy": "^2.0.2"
+    "eslint-config-coorpacademy": "^2.0.2",
+    "typescript": "^3.2.2"
   },
   "ava": {
     "files": [
-      "tests/**/*.js"
+      "tests/**/*.ts"
+    ],
+    "compileEnhancements": false,
+    "extensions": [
+      "ts"
     ],
     "require": [
-      "@babel/register"
+      "ts-node/register"
     ]
+  },
+  "dependencies": {
+    "ts-node": "^7.0.1"
   }
 }

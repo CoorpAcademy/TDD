@@ -1,5 +1,5 @@
 import test from 'ava';
-import {toNumbers} from '../app';
+import toNumbers from '../app';
 
 test('foo', t => {
   t.pass();

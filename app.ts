@@ -27,14 +27,19 @@ const groupNumbersByWeight = numbers => {
     }, []);
 };
 
+const pipe = (...funs) =>
+   value => funs.reduce((value, funs) => funs(value), value);
+
 const map = fun => arr => arr.map(fun);
 
-export const toNumbers = input => {
+const toNumbers = input => {
     const chars = input.split('');
-    const charsToValues = chars |> map(c => VARS[c]);
+    const charsToValues = map(c => VARS[c])(chars);
 
-    return charsToValues
-        |> groupNumbersByWeight 
-        |> map(subtractNumbers) 
-        |> addNumbers;
+    return pipe(
+         groupNumbersByWeight
+        , map(subtractNumbers)
+        , addNumbers)(charsToValues);
 };
+
+export default toNumbers;
