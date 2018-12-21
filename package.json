@@ -1,7 +1,7 @@
 {
   "name": "awesome-package",
   "scripts": {
-    "test": " ava",
+    "test": " ava"
   },
   "devDependencies": {
     "@ava/babel-preset-stage-4": "^2.0.0",
