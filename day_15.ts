@@ -3,21 +3,21 @@ const INITIAL_HIT_POINT = 200;
 
 type BaseCell = {
   type: Type;
-  position: Coordinate;
 };
-type Wall = BaseCell & { type: 'wall' };
-type Type = 'goblin' | 'elf' | 'wall' | 'Cavern';
-type Goblin = BaseCell & {
+export type Wall = BaseCell & { type: 'wall' };
+type Type = 'goblin' | 'elf' | 'wall' | 'cavern';
+
+export type Goblin = BaseCell & {
   type: 'goblin';
   hitPoint: number;
 };
 
-type Elf = BaseCell & {
+export type Elf = BaseCell & {
   type: 'elf';
   hitPoint: number;
 };
 
-type Cavern = BaseCell & { type: 'cavern' };
+export type Cavern = BaseCell & { type: 'cavern' };
 
 export type Cell = Wall | Goblin | Elf | Cavern;
 export type Plan = Array<Array<Cell>>;
@@ -26,10 +26,6 @@ export type Coordinate = [number, number];
 type Unit = Elf | Goblin;
 type Round = {
   plan: Plan;
-};
-
-const charToCell = (char: string): Cell => {
-  return { type: 'wall', position: [0, 0] };
 };
 
 const findClosestEnemy = (plan: Plan, unit: Unit, enimies: Array<Unit>): Coordinate => [0, 0];

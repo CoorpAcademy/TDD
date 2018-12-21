@@ -7,6 +7,10 @@ import {
   Cavern,
   Goblin,
   Elf,
+  Cell,
+  Coordinate,
+  getAdjacentCell,
+  getFirstPosition,
   isFinish,
   getResult,
   getOrderedUnitPositions
@@ -113,7 +117,6 @@ test('getOrderedUnitPositions', t => {
     [[1, 2], [1, 4], [2, 1], [2, 3], [2, 5], [3, 2], [3, 4]]
   );
 });
-import { Plan, Cell, Coordinate, getAdjacentCell, getFirstPosition } from '../day_15';
 
 test('getAdjacentCell ', t => {
   const currentPosition: Coordinate = [2, 2];
