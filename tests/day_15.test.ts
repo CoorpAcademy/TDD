@@ -6,7 +6,9 @@ import {
   Wall,
   Cavern,
   Goblin,
-  Elf
+  Elf,
+  isFinish,
+  getResult
 } from "../day_15";
 
 test("stringToPlan", t => {
@@ -50,4 +52,36 @@ test('planToString', t => {
 #.G.E.#
 #######`
   t.deepEqual(actual, expected);
+});
+
+test('isFinish', t => {
+  t.is(isFinish(stringToPlan(`#######
+#E..EG#
+#.#G.E#
+#E.##E#
+#G..#.#
+#..E#.#
+#######`)), false)
+  t.is(isFinish(stringToPlan(`#######
+#.E.E.#
+#.#E..#
+#E.##.#
+#.E.#.#
+#...#.#
+#######`)), true)
+});
+
+test('getResult', t => {
+  const WALL: Wall = { type: "wall" };
+  const CAVERN: Cavern = { type: "cavern" };
+  const ELF = (hitPoint: number): Elf => ({ type: 'elf', hitPoint});
+  t.is(getResult([
+    [WALL, WALL, WALL, WALL, WALL, WALL, WALL],
+    [WALL, CAVERN, ELF(164), CAVERN, ELF(197), WALL, WALL],
+    [WALL, CAVERN, WALL, ELF(200), CAVERN, CAVERN, WALL],
+    [WALL, ELF(98), CAVERN, WALL, WALL, CAVERN, WALL],
+    [WALL, CAVERN, ELF(200), CAVERN, WALL, CAVERN, WALL],
+    [WALL, CAVERN, CAVERN, CAVERN, WALL, CAVERN, WALL],
+    [WALL, WALL, WALL, WALL, WALL, WALL, WALL]
+  ], 46), 39514)
 });
