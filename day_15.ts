@@ -64,23 +64,43 @@ const cellToChar = (cell: Cell): string => {
     }
 };
 
-// export const displayPlan = (plan: Plan): void => {
-//       plan.forEach((cells: Array<Cell> => {
-        
-//       });        
-// }
+export const displayPlan = (plan: Plan): void => {
+    console.log(planToString(plan));
+}
 
 export const planToString = (plan: Plan): string =>
     plan.map(row => row.map(cellToChar).join('')).join('\n');
 export const stringToPlan = (input: string): Plan => 
     input.split('\n').map(row => row.split('').map(charToCell));
 
+
+const getUnits = (row: Array<Cell>): Array<Unit> =>
+    row.reduce((units: Array<Unit>, cell: Cell): Array<Unit> => {
+        if (cell.type === 'elf' || cell.type === 'goblin')
+            return [...units, cell];
+        return units;
+    }, []);
+
+const flatten = <T>(input: Array<Array<T>>): Array<T> => 
+    input.reduce((a, b) => a.concat(b), []);
+const sum = (input: Array<number>): number => input.reduce((a, b) => a + b, 0);
+
+export const getOrderedUnitPositions = (plan: Plan): Array<Coordinate> => {
+    return plan.reduce((positions: Array<Coordinate>, row: Array<Cell>, x: number): Array<Coordinate> => {
+        return row.reduce((positions: Array<Coordinate>, cell: Cell, y: number): Array<Coordinate> => {
+            if (cell.type === 'elf' || cell.type === 'goblin')
+                return [...positions, [x, y]];
+            return positions;
+        }, positions)
+    }, []);
+};
+
 // const getNextPlan = (plan: Plan): Plan => {
 //     const positions: Array<Position> = getOrderPosition(plan);
 
 //     return positions.reduce((plan, position) => {
-//         const unit: Unit = getCell(plan, position);
-//         const [planAfterMove, position] = move(plan, position, unit);
+//         // const unit: Unit = getCell(plan, position);
+//         // const [planAfterMove, position] = move(plan, position, unit);
 
 //         const planAfterAttack = attack(plan, position, unit);
 
@@ -95,17 +115,8 @@ export const isFinish = (plan: Plan): boolean => {
     return !(hasSomeElfAlive && hasSomeGoblinAlive);
 };
 export const getResult = (plan: Plan, round: number): number => {
-    const units: Array<Unit> = plan.map((row: Array<Cell>): Array<Unit> => {
-        const units: Array<Unit> = row.reduce((units: Array<Unit>, cell: Cell): Array<Unit> => {
-            if (cell.type === 'elf' || cell.type === 'goblin')
-                return [...units, cell];
-            return units;
-        }, [])
-        return units;
-    }).reduce((a, b) => a.concat(b), []);
-
-    const totalHitPointLeft = units.map(unit => unit.hitPoint).reduce((a, b) => a + b, 0);
-
+    const units: Array<Unit> = flatten(plan.map(getUnits));
+    const totalHitPointLeft = sum(units.map(unit => unit.hitPoint));
     return totalHitPointLeft * round
 };
 

@@ -8,7 +8,8 @@ import {
   Goblin,
   Elf,
   isFinish,
-  getResult
+  getResult,
+  getOrderedUnitPositions
 } from "../day_15";
 
 test("stringToPlan", t => {
@@ -84,4 +85,23 @@ test('getResult', t => {
     [WALL, CAVERN, CAVERN, CAVERN, WALL, CAVERN, WALL],
     [WALL, WALL, WALL, WALL, WALL, WALL, WALL]
   ], 46), 39514)
+});
+
+test('getOrderedUnitPositions', t => {
+  t.deepEqual(
+    getOrderedUnitPositions(stringToPlan(`#######
+#.G.E.#
+#E.G.E#
+#.G.E.#
+#######`)),
+    [
+      [1, 2],
+      [1, 4],
+      [2, 1],
+      [2, 3],
+      [2, 5],
+      [3, 2],
+      [3, 4]
+    ]
+  )
 });
