@@ -1,8 +1,7 @@
 {
   "name": "awesome-package",
   "scripts": {
-    "test": " npm run eslint && ava",
-    "eslint": "eslint ./ *.js  --ext .js"
+    "test": " ava",
   },
   "devDependencies": {
     "@ava/babel-preset-stage-4": "^2.0.0",
