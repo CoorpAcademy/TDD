@@ -113,7 +113,48 @@ test('getOrderedUnitPositions', t => {
     [[1, 2], [1, 4], [2, 1], [2, 3], [2, 5], [3, 2], [3, 4]]
   );
 });
+import { Plan, Cell, Coordinate, getAdjacentCell, getFirstPosition } from '../day_15';
 
-const plan = [[]];
+test('getAdjacentCell ', t => {
+  const currentPosition: Coordinate = [2, 2];
+  const expectedPositions: Array<Coordinate> = [[2, 1], [1, 2], [3, 2], [2, 3]];
+  const result = getAdjacentCell(currentPosition);
+  t.deepEqual(result, expectedPositions);
+});
 
-test('findClosestEnemy -   ', t => t.pass());
+test('getFirstPosition - nominal case ', t => {
+  const expectedResult: Coordinate = [1, 1];
+  const coordinates: Array<Coordinate> = [expectedResult, [1, 2]];
+
+  const result = getFirstPosition(coordinates);
+  t.deepEqual(result, expectedResult);
+});
+
+test('getFirstPosition - nominal case #2 ', t => {
+  const expectedResult: Coordinate = [1, 1];
+  const coordinates: Array<Coordinate> = [expectedResult, [3, 3]];
+
+  const result = getFirstPosition(coordinates);
+  t.deepEqual(result, expectedResult);
+});
+
+test('getFirstPosition - nominal case #3 ', t => {
+  const expectedResult: Coordinate = [1, 1];
+  const coordinates: Array<Coordinate> = [expectedResult, [2, 1]];
+  const result = getFirstPosition(coordinates);
+  t.deepEqual(result, expectedResult);
+});
+
+test('getFirstPosition - nominal case #4 ', t => {
+  const expectedResult: Coordinate = [1, 1];
+  const coordinates: Array<Coordinate> = [[2, 1], expectedResult];
+  const result = getFirstPosition(coordinates);
+  t.deepEqual(result, expectedResult);
+});
+
+test('getFirstPosition - nominal case #5', t => {
+  const expectedResult: Coordinate = [1, 1];
+  const coordinates: Array<Coordinate> = [[2, 1], expectedResult, [5, 999]];
+  const result = getFirstPosition(coordinates);
+  t.deepEqual(result, expectedResult);
+});
