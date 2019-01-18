@@ -7,7 +7,7 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Day_15",
+            "name": "Web",
             "program": "${workspaceFolder}/node_modules/.bin/ts-node",
             "args": [
                 "${workspaceFolder}/index.ts"
@@ -20,7 +20,7 @@
             "name": "AVA",
             "program": "${workspaceFolder}/node_modules/ava/profile.js",
             "args": [
-                "${workspaceFolder}/tests/fsm.test.ts"
+                "${workspaceFolder}/tests/*.ts"
             ]
         }
     ]
