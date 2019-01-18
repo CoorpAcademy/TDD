@@ -2,6 +2,7 @@ import path from "path";
 import express from "express";
 import webpack from "webpack";
 import webpackConfig from "../webpack.config";
+import {additionMiddleware} from './middleware';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -9,6 +10,12 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`App is listening on port ${port}`);
 });
+
+
+
+app.get('/add/:a/:b', additionMiddleware);
+
+
 
 app.get("/", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../dist", "index.html"));
